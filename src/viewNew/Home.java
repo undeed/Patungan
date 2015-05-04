@@ -11,8 +11,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.EventListener;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import patungan.Patungan;
 
 /**
@@ -36,22 +34,22 @@ public class Home extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         mainPanel = new javax.swing.JPanel();
         memberView = new javax.swing.JPanel();
-        btnEditMember = new javax.swing.JButton();
-        btnAddMember = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listMember = new javax.swing.JList();
-        btnDeleteMember = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        btnAddMember = new javax.swing.JButton();
+        btnEditMember = new javax.swing.JButton();
+        btnDeleteMember = new javax.swing.JButton();
         placeView = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         listPlace = new javax.swing.JList();
+        jPanel1 = new javax.swing.JPanel();
         btnAddPlace = new javax.swing.JButton();
+        btnSetMenu = new javax.swing.JButton();
         btnEditPlace = new javax.swing.JButton();
         btnDeletePlace = new javax.swing.JButton();
-        btnSetMenu = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
         menuView = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         btnDeleteMenu = new javax.swing.JButton();
@@ -136,10 +134,6 @@ public class Home extends javax.swing.JFrame {
         mainPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         mainPanel.setLayout(new java.awt.CardLayout());
 
-        btnEditMember.setText("Edit");
-
-        btnAddMember.setText("Add");
-
         jLabel1.setText("Member List");
 
         listMember.setModel(new javax.swing.AbstractListModel() {
@@ -148,8 +142,6 @@ public class Home extends javax.swing.JFrame {
             public Object getElementAt(int i) { return strings[i]; }
         });
         jScrollPane1.setViewportView(listMember);
-
-        btnDeleteMember.setText("Del");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -161,8 +153,14 @@ public class Home extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 206, Short.MAX_VALUE)
         );
+
+        btnAddMember.setText("Add");
+
+        btnEditMember.setText("Edit");
+
+        btnDeleteMember.setText("Del");
 
         javax.swing.GroupLayout memberViewLayout = new javax.swing.GroupLayout(memberView);
         memberView.setLayout(memberViewLayout);
@@ -170,15 +168,16 @@ public class Home extends javax.swing.JFrame {
             memberViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(memberViewLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(memberViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
+                .addGroup(memberViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(memberViewLayout.createSequentialGroup()
                         .addComponent(btnDeleteMember)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnEditMember)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAddMember))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(memberViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel1)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -194,10 +193,10 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(memberViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDeleteMember)
+                    .addComponent(btnAddMember)
                     .addComponent(btnEditMember)
-                    .addComponent(btnAddMember))
-                .addContainerGap())
+                    .addComponent(btnDeleteMember))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         mainPanel.add(memberView, "memberView");
@@ -211,51 +210,50 @@ public class Home extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(listPlace);
 
-        btnAddPlace.setText("Add");
-
-        btnEditPlace.setText("Edit");
-
-        btnDeletePlace.setText("Del");
-
-        btnSetMenu.setText("Set Menu");
-
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 139, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 206, Short.MAX_VALUE)
         );
+
+        btnAddPlace.setText("Add");
+
+        btnSetMenu.setText("Set Menu");
+
+        btnEditPlace.setText("Edit");
+
+        btnDeletePlace.setText("Del");
 
         javax.swing.GroupLayout placeViewLayout = new javax.swing.GroupLayout(placeView);
         placeView.setLayout(placeViewLayout);
         placeViewLayout.setHorizontalGroup(
             placeViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, placeViewLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(287, 287, 287))
             .addGroup(placeViewLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(placeViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane2)
-                    .addGroup(placeViewLayout.createSequentialGroup()
-                        .addComponent(btnDeletePlace)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEditPlace)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAddPlace)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(placeViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
                     .addGroup(placeViewLayout.createSequentialGroup()
-                        .addComponent(btnSetMenu)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(placeViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(placeViewLayout.createSequentialGroup()
+                                .addComponent(btnDeletePlace)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnEditPlace)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnAddPlace))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(placeViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(placeViewLayout.createSequentialGroup()
+                                .addComponent(btnSetMenu)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         placeViewLayout.setVerticalGroup(
@@ -269,10 +267,10 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(placeViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDeletePlace)
-                    .addComponent(btnEditPlace)
                     .addComponent(btnAddPlace)
-                    .addComponent(btnSetMenu))
+                    .addComponent(btnSetMenu)
+                    .addComponent(btnEditPlace)
+                    .addComponent(btnDeletePlace))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -374,40 +372,40 @@ public class Home extends javax.swing.JFrame {
             placeEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(placeEditLayout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(placeEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelPlaceEdit)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(placeEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel5)
-                    .addGroup(placeEditLayout.createSequentialGroup()
-                        .addComponent(labelPlaceEdit)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tfPlaceEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(placeEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(tfTaxPlaceEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, placeEditLayout.createSequentialGroup()
-                            .addGap(106, 106, 106)
-                            .addComponent(btnCancelPlaceEdit)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnSavePlaceEdit)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnAddPlaceEdit))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(tfPlaceEdit, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                    .addComponent(tfTaxPlaceEdit))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, placeEditLayout.createSequentialGroup()
+                .addContainerGap(129, Short.MAX_VALUE)
+                .addComponent(btnCancelPlaceEdit)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSavePlaceEdit)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAddPlaceEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
         );
         placeEditLayout.setVerticalGroup(
             placeEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(placeEditLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(46, 46, 46)
                 .addGroup(placeEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfPlaceEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelPlaceEdit))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(placeEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(tfTaxPlaceEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfTaxPlaceEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(placeEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddPlaceEdit)
                     .addComponent(btnSavePlaceEdit)
                     .addComponent(btnCancelPlaceEdit))
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addContainerGap(139, Short.MAX_VALUE))
         );
 
         mainPanel.add(placeEdit, "placeEdit");
@@ -1024,10 +1022,12 @@ public class Home extends javax.swing.JFrame {
 
     private void menuPlaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPlaceActionPerformed
         // TODO add your handling code here:
+        c.gotoPlaceView();
     }//GEN-LAST:event_menuPlaceActionPerformed
 
     private void menuMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuMemberActionPerformed
         // TODO add your handling code here:
+        c.gotoMemberView();
     }//GEN-LAST:event_menuMemberActionPerformed
 
     private void menuPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPaymentActionPerformed
@@ -1190,51 +1190,142 @@ public class Home extends javax.swing.JFrame {
         btnSetBuyer.addActionListener((ActionListener) event);
         btnSetMenu.addActionListener((ActionListener) event);
         listMember.addMouseListener((MouseAdapter) event);
+        listPlace.addMouseListener((MouseAdapter) event);
+//        listMember.addListSelectionListener((ListSelectionListener) event);
 
     }
 
     private class Controller extends MouseAdapter implements ActionListener {
 
         CardLayout c = (CardLayout) mainPanel.getLayout();
+        int lastSelectedListMember = -1;
+        int lastSelectedListPlace = -1;
 
         public Controller() {
             setListener(this);
+            gotoMemberView();
+        }
+
+        public void gotoMemberView() {
             c.show(mainPanel, "memberView");
+            lastSelectedListMember = -1;
+            listMember.clearSelection();
+            btnAddMember.setVisible(true);
             btnEditMember.setVisible(false);
             btnDeleteMember.setVisible(false);
+        }
+
+        public void gotoMemberEdit(int id) {
+            c.show(mainPanel, "memberEdit");
+            if (id == -1) {
+                labelMemberEdit.setText("Add New Member");
+                btnAddMemberEdit.setVisible(true);
+                btnSaveMemberEdit.setVisible(false);
+            } else {
+                labelMemberEdit.setText("Edit Member");
+                btnAddMemberEdit.setVisible(false);
+                btnSaveMemberEdit.setVisible(true);
+            }
+        }
+
+        public void gotoPlaceView() {
+            c.show(mainPanel, "placeView");
+            lastSelectedListPlace = -1;
+            listPlace.clearSelection();
+            btnAddPlace.setVisible(true);
+            btnDeletePlace.setVisible(false);
+            btnEditPlace.setVisible(false);
+            btnSetMenu.setVisible(false);
+        }
+
+        public void gotoPlaceEdit(int id) {
+            c.show(mainPanel, "placeEdit");
+            if (id == -1) {
+                labelPlaceEdit.setText("Add New Place");
+                btnAddPlaceEdit.setVisible(true);
+                btnSavePlaceEdit.setVisible(false);
+            } else {
+                labelPlaceEdit.setText("Edit Place");
+                btnAddPlaceEdit.setVisible(false);
+                btnSavePlaceEdit.setVisible(true);
+            }
         }
 
         @Override
         public void actionPerformed(ActionEvent ae) {
             Object e = ae.getSource();
+
             //Action Handler for Panel Member View
             if (e.equals(btnAddMember)) {
-                c.show(mainPanel, "memberEdit");
-                btnAddMemberEdit.setVisible(true);
-                btnCancelMemberEdit.setVisible(false);
-                btnSaveMemberEdit.setVisible(false);
+                gotoMemberEdit(-1);
             } else if (e.equals(btnEditMember)) {
-                c.show(mainPanel, "memberEdit");
-                btnAddMemberEdit.setVisible(false);
-                btnCancelMemberEdit.setVisible(true);
-                btnSaveMemberEdit.setVisible(true);
+                int num = listMember.getSelectedIndex();
+                gotoMemberEdit(num);
+            } else if (e.equals(btnDeleteMember)) {
+                int num = listMember.getSelectedIndex();
+                // method delete member
+            } //
+            //Action Handler for Panel Member Edit
+            //
+            else if (e.equals(btnCancelMemberEdit)) {
+                gotoMemberView();
+            } else if (e.equals(btnAddMemberEdit)) {
+                //method add to list 
+                gotoMemberView();
+            }//
+            //Action Handler for Panel Place View
+            //
+            else if (e.equals(btnAddPlace)) {
+                gotoPlaceEdit(-1);
+            } else if (e.equals(btnEditPlace)) {
+                int num = listPlace.getSelectedIndex();
+                gotoPlaceEdit(num);
+            } else if (e.equals(btnDeletePlace)) {
+                int num = listMember.getSelectedIndex();
+                // method delete place
+            }//
+            //Action Handler for Panel Place Edit
+            //
+            else if (e.equals(btnAddPlaceEdit)) {
+                // method add to list
+                gotoPlaceView();
+            } else if (e.equals(btnCancelPlaceEdit)) {
+                gotoPlaceView();
             }
-//        c.show(mainPanel, "memberEdit");
+
         }
 
+        @Override
         public void mousePressed(MouseEvent me) {
             Object e = me.getSource();
+            //Action Handler for Panel Member View
             if (e.equals(listMember)) {
-                if (listMember.isSelectionEmpty()) {
+                int index = listMember.locationToIndex(me.getPoint());
+                if (index != -1 && index == lastSelectedListMember) {
                     listMember.clearSelection();
-                    btnAddMemberEdit.setVisible(true);
                     btnEditMember.setVisible(false);
                     btnDeleteMember.setVisible(false);
                 } else {
-                    btnAddMemberEdit.setVisible(true);
                     btnEditMember.setVisible(true);
                     btnDeleteMember.setVisible(true);
                 }
+                lastSelectedListMember = listMember.getSelectedIndex();
+            }//
+            //Action Handler for Panel Member View
+            //
+            else if (e.equals(listPlace)) {
+                int index = listPlace.locationToIndex(me.getPoint());
+                if (index != -1 && index == lastSelectedListPlace) {
+                    listPlace.clearSelection();
+                    btnEditPlace.setVisible(false);
+                    btnDeletePlace.setVisible(false);
+                    btnSetMenu.setVisible(false);
+                } else {
+                    btnEditPlace.setVisible(true);
+                    btnDeletePlace.setVisible(true);
+                    btnSetMenu.setVisible(true);
+                }
+                lastSelectedListPlace = listPlace.getSelectedIndex();
             }
         }
 
