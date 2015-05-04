@@ -12,20 +12,34 @@ import java.util.ArrayList;
  */
 public class Patungan {
 
-    ArrayList<Menu> listMenu;
-    ArrayList<Orang> listOrang;
+    private ArrayList<Menu> listMenu;
+    private ArrayList<Orang> listOrang;
+    private ArrayList<Place> listPlace;
 
     public Patungan() {
         listMenu = new ArrayList();
         listOrang = new ArrayList();
+        listPlace = new ArrayList();
     }
 
-    public String[] getListOrang() {
+    public void addOrang(Orang o) {
+        listOrang.add(o);
+    }
+
+    public Orang getOrang(int idx) {
+        return listOrang.get(idx);
+    }
+
+    public void delOrang(int idx) {
+        listOrang.remove(idx);
+    }
+
+    public Object[] getListOrang() {
         ArrayList<String> s = new ArrayList();
         for (Orang o : listOrang) {
             s.add(o.getName());
         }
-        return (String[]) s.toArray();
+        return s.toArray();
     }
 
 }

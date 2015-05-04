@@ -11,7 +11,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.EventListener;
-import patungan.Patungan;
+import javax.swing.JOptionPane;
+import patungan.*;
 
 /**
  *
@@ -37,10 +38,10 @@ public class Home extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listMember = new javax.swing.JList();
-        jPanel2 = new javax.swing.JPanel();
         btnAddMember = new javax.swing.JButton();
         btnEditMember = new javax.swing.JButton();
         btnDeleteMember = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         placeView = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -68,8 +69,8 @@ public class Home extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         tfTaxPlaceEdit = new javax.swing.JTextField();
         memberEdit = new javax.swing.JPanel();
-        labelMemberEdit = new javax.swing.JLabel();
         tfMemberEdit = new javax.swing.JTextField();
+        labelMemberEdit = new javax.swing.JLabel();
         btnAddMemberEdit = new javax.swing.JButton();
         btnSaveMemberEdit = new javax.swing.JButton();
         btnCancelMemberEdit = new javax.swing.JButton();
@@ -141,7 +142,14 @@ public class Home extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        listMember.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         jScrollPane1.setViewportView(listMember);
+
+        btnAddMember.setText("Add");
+
+        btnEditMember.setText("Edit");
+
+        btnDeleteMember.setText("Del");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -155,12 +163,6 @@ public class Home extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 206, Short.MAX_VALUE)
         );
-
-        btnAddMember.setText("Add");
-
-        btnEditMember.setText("Edit");
-
-        btnDeleteMember.setText("Del");
 
         javax.swing.GroupLayout memberViewLayout = new javax.swing.GroupLayout(memberView);
         memberView.setLayout(memberViewLayout);
@@ -208,6 +210,7 @@ public class Home extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        listPlace.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         jScrollPane2.setViewportView(listPlace);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -1198,6 +1201,7 @@ public class Home extends javax.swing.JFrame {
     private class Controller extends MouseAdapter implements ActionListener {
 
         CardLayout c = (CardLayout) mainPanel.getLayout();
+        Patungan p = new Patungan();
         int lastSelectedListMember = -1;
         int lastSelectedListPlace = -1;
 
@@ -1208,6 +1212,7 @@ public class Home extends javax.swing.JFrame {
 
         public void gotoMemberView() {
             c.show(mainPanel, "memberView");
+            listMember.setListData(p.getListOrang());
             lastSelectedListMember = -1;
             listMember.clearSelection();
             btnAddMember.setVisible(true);
@@ -1217,11 +1222,14 @@ public class Home extends javax.swing.JFrame {
 
         public void gotoMemberEdit(int id) {
             c.show(mainPanel, "memberEdit");
+            tfMemberEdit.requestFocus();
             if (id == -1) {
+                tfMemberEdit.setText("");
                 labelMemberEdit.setText("Add New Member");
                 btnAddMemberEdit.setVisible(true);
                 btnSaveMemberEdit.setVisible(false);
             } else {
+                tfMemberEdit.setText(p.getOrang(id).getName());
                 labelMemberEdit.setText("Edit Member");
                 btnAddMemberEdit.setVisible(false);
                 btnSaveMemberEdit.setVisible(true);
@@ -1263,6 +1271,14 @@ public class Home extends javax.swing.JFrame {
                 gotoMemberEdit(num);
             } else if (e.equals(btnDeleteMember)) {
                 int num = listMember.getSelectedIndex();
+
+                String message = "Delete member " + p.getOrang(num).getName() + "?";
+                String title = "Confirm Delete Member";
+                int reply = JOptionPane.showConfirmDialog(Home.this, message, title, JOptionPane.YES_NO_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                    p.delOrang(num);
+                }
+                listMember.setListData(p.getListOrang());
                 // method delete member
             } //
             //Action Handler for Panel Member Edit
@@ -1271,6 +1287,10 @@ public class Home extends javax.swing.JFrame {
                 gotoMemberView();
             } else if (e.equals(btnAddMemberEdit)) {
                 //method add to list 
+                p.addOrang(new Orang(tfMemberEdit.getText()));
+                gotoMemberView();
+            } else if (e.equals(btnSaveMemberEdit)) {
+                p.getOrang(lastSelectedListMember).setName(tfMemberEdit.getText());
                 gotoMemberView();
             }//
             //Action Handler for Panel Place View
@@ -1301,7 +1321,7 @@ public class Home extends javax.swing.JFrame {
             //Action Handler for Panel Member View
             if (e.equals(listMember)) {
                 int index = listMember.locationToIndex(me.getPoint());
-                if (index != -1 && index == lastSelectedListMember) {
+                if ((index != -1 && index == lastSelectedListMember) || (listMember.getModel().getSize() == 0)) {
                     listMember.clearSelection();
                     btnEditMember.setVisible(false);
                     btnDeleteMember.setVisible(false);
@@ -1315,7 +1335,7 @@ public class Home extends javax.swing.JFrame {
             //
             else if (e.equals(listPlace)) {
                 int index = listPlace.locationToIndex(me.getPoint());
-                if (index != -1 && index == lastSelectedListPlace) {
+                if ((index != -1 && index == lastSelectedListPlace) || (listPlace.getModel().getSize() == 0)) {
                     listPlace.clearSelection();
                     btnEditPlace.setVisible(false);
                     btnDeletePlace.setVisible(false);

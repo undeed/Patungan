@@ -21,7 +21,9 @@ public class Orang {
     }
 
     /**
-     * menghitung total yang harus dibayar berdasarkan menu baik yang sudah dibayar atau belum
+     * menghitung total yang harus dibayar berdasarkan menu baik yang sudah
+     * dibayar atau belum
+     *
      * @return total harus dibayar
      */
     public double getTotalDibayar() {
@@ -34,8 +36,9 @@ public class Orang {
 
     /**
      * mengembalikan total yang belum dibayar atau total yang sudah dibayar
+     *
      * @param sudah true = sudah dibayar, false = belum dibayar
-     * @return total 
+     * @return total
      */
     public double getTotalDibayar(boolean sudah) {
         double total = 0;
@@ -53,6 +56,24 @@ public class Orang {
 
     public Menu getMenu(int id) {
         return listMenu.get(id);
+    }
+
+    public ArrayList<Menu> getListMenu() {
+        return listMenu;
+    }
+
+    public ArrayList<Menu> getListMenu(boolean sudah) {
+        ArrayList<Menu> list = new ArrayList();
+        for (Menu m : listMenu) {
+            if (m.isDibayar() == sudah) {
+                list.add(m);
+            }
+        }
+        return list;
+    }
+
+    public void setListMenu(ArrayList<Menu> listMenu) {
+        this.listMenu = listMenu;
     }
 
     public String getName() {

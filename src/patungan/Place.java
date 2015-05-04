@@ -14,7 +14,6 @@ public class Place {
     
     private String name;
     private ArrayList<Menu> listMenu;
-    private ArrayList<Grup> listGrup;
     private ArrayList<Orang> listOrang;
     
 }
