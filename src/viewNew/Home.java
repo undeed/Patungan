@@ -9,7 +9,10 @@ import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.EventListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import patungan.Patungan;
 
 /**
@@ -103,25 +106,26 @@ public class Home extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jScrollPane9 = new javax.swing.JScrollPane();
         tblMemberPayment = new javax.swing.JTable();
-        jPanel5 = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
+        panelTotalMustPay = new javax.swing.JPanel();
+        panelPaid = new javax.swing.JPanel();
         btnPayMember = new javax.swing.JButton();
         payMember = new javax.swing.JPanel();
-        jPanel8 = new javax.swing.JPanel();
-        jPanel7 = new javax.swing.JPanel();
+        panelWhoPaid = new javax.swing.JPanel();
+        panelTotal = new javax.swing.JPanel();
         jScrollPane10 = new javax.swing.JScrollPane();
-        tblMemberPayment1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        tblMemberPaidBy = new javax.swing.JTable();
+        btnDelMemberToPay = new javax.swing.JButton();
+        btnAddMemberToPay = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
-        jPanel10 = new javax.swing.JPanel();
+        btnPay = new javax.swing.JButton();
+        selectMemberToPay = new javax.swing.JPanel();
         jScrollPane11 = new javax.swing.JScrollPane();
         tblMemberPayment2 = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        btnOkPayMember = new javax.swing.JButton();
+        panelTotalMemberPaid = new javax.swing.JPanel();
         menuMember = new javax.swing.JToggleButton();
         menuPlace = new javax.swing.JToggleButton();
         menuPayment = new javax.swing.JToggleButton();
@@ -166,7 +170,7 @@ public class Home extends javax.swing.JFrame {
             memberViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(memberViewLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(memberViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(memberViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addGroup(memberViewLayout.createSequentialGroup()
                         .addComponent(btnDeleteMember)
@@ -174,7 +178,7 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(btnEditMember)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAddMember))
-                    .addComponent(jScrollPane1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -422,23 +426,25 @@ public class Home extends javax.swing.JFrame {
             memberEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(memberEditLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(memberEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(memberEditLayout.createSequentialGroup()
+                .addGroup(memberEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, memberEditLayout.createSequentialGroup()
+                        .addComponent(labelMemberEdit)
+                        .addGap(18, 18, 18)
+                        .addComponent(tfMemberEdit))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, memberEditLayout.createSequentialGroup()
+                        .addGap(0, 118, Short.MAX_VALUE)
                         .addComponent(btnCancelMemberEdit)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSaveMemberEdit)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAddMemberEdit))
-                    .addGroup(memberEditLayout.createSequentialGroup()
-                        .addComponent(labelMemberEdit)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tfMemberEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(19, 19, 19))
+                        .addComponent(btnAddMemberEdit)
+                        .addGap(4, 4, 4)))
+                .addContainerGap())
         );
         memberEditLayout.setVerticalGroup(
             memberEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(memberEditLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(44, 44, 44)
                 .addGroup(memberEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfMemberEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelMemberEdit))
@@ -447,7 +453,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(btnAddMemberEdit)
                     .addComponent(btnSaveMemberEdit)
                     .addComponent(btnCancelMemberEdit))
-                .addContainerGap(175, Short.MAX_VALUE))
+                .addContainerGap(176, Short.MAX_VALUE))
         );
 
         mainPanel.add(memberEdit, "memberEdit");
@@ -695,29 +701,29 @@ public class Home extends javax.swing.JFrame {
         ));
         jScrollPane9.setViewportView(tblMemberPayment);
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelTotalMustPay.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelTotalMustPayLayout = new javax.swing.GroupLayout(panelTotalMustPay);
+        panelTotalMustPay.setLayout(panelTotalMustPayLayout);
+        panelTotalMustPayLayout.setHorizontalGroup(
+            panelTotalMustPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelTotalMustPayLayout.setVerticalGroup(
+            panelTotalMustPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 92, Short.MAX_VALUE)
         );
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelPaid.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelPaidLayout = new javax.swing.GroupLayout(panelPaid);
+        panelPaid.setLayout(panelPaidLayout);
+        panelPaidLayout.setHorizontalGroup(
+            panelPaidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 162, Short.MAX_VALUE)
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelPaidLayout.setVerticalGroup(
+            panelPaidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 92, Short.MAX_VALUE)
         );
 
@@ -734,8 +740,8 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(paymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(panelTotalMustPay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(panelPaid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paymentLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(btnPayMember))))
@@ -752,9 +758,9 @@ public class Home extends javax.swing.JFrame {
                 .addGap(1, 1, 1)
                 .addGroup(paymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(paymentLayout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(panelTotalMustPay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(panelPaid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnPayMember))
                     .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
@@ -763,33 +769,33 @@ public class Home extends javax.swing.JFrame {
 
         mainPanel.add(payment, "payment");
 
-        jPanel8.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelWhoPaid.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelWhoPaidLayout = new javax.swing.GroupLayout(panelWhoPaid);
+        panelWhoPaid.setLayout(panelWhoPaidLayout);
+        panelWhoPaidLayout.setHorizontalGroup(
+            panelWhoPaidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelWhoPaidLayout.setVerticalGroup(
+            panelWhoPaidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 45, Short.MAX_VALUE)
         );
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelTotal.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelTotalLayout = new javax.swing.GroupLayout(panelTotal);
+        panelTotal.setLayout(panelTotalLayout);
+        panelTotalLayout.setHorizontalGroup(
+            panelTotalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelTotalLayout.setVerticalGroup(
+            panelTotalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 59, Short.MAX_VALUE)
         );
 
-        tblMemberPayment1.setModel(new javax.swing.table.DefaultTableModel(
+        tblMemberPaidBy.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -800,17 +806,17 @@ public class Home extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane10.setViewportView(tblMemberPayment1);
+        jScrollPane10.setViewportView(tblMemberPaidBy);
 
-        jButton1.setText("Del");
+        btnDelMemberToPay.setText("Del");
 
-        jButton2.setText("Add");
+        btnAddMemberToPay.setText("Add");
 
         jPanel9.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel2.setText("Pay");
 
-        jButton3.setText("Pay");
+        btnPay.setText("Pay");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -825,7 +831,7 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(jTextField1))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                         .addGap(0, 93, Short.MAX_VALUE)
-                        .addComponent(jButton3)))
+                        .addComponent(btnPay)))
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -836,7 +842,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
+                .addComponent(btnPay)
                 .addGap(0, 7, Short.MAX_VALUE))
         );
 
@@ -847,36 +853,36 @@ public class Home extends javax.swing.JFrame {
             .addGroup(payMemberLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(payMemberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelWhoPaid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(payMemberLayout.createSequentialGroup()
                         .addGroup(payMemberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(payMemberLayout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(btnDelMemberToPay)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton2))
+                                .addComponent(btnAddMemberToPay))
                             .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(payMemberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(panelTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         payMemberLayout.setVerticalGroup(
             payMemberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(payMemberLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelWhoPaid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(payMemberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(payMemberLayout.createSequentialGroup()
                         .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(panelTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(payMemberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnDelMemberToPay)
+                    .addComponent(btnAddMemberToPay))
                 .addGap(9, 9, 9))
         );
 
@@ -897,34 +903,60 @@ public class Home extends javax.swing.JFrame {
 
         jLabel4.setText("List Member");
 
-        jButton4.setText("OK");
+        btnOkPayMember.setText("OK");
 
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton4)
-                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4)))
-                .addContainerGap(208, Short.MAX_VALUE))
+        panelTotalMemberPaid.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        javax.swing.GroupLayout panelTotalMemberPaidLayout = new javax.swing.GroupLayout(panelTotalMemberPaid);
+        panelTotalMemberPaid.setLayout(panelTotalMemberPaidLayout);
+        panelTotalMemberPaidLayout.setHorizontalGroup(
+            panelTotalMemberPaidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 134, Short.MAX_VALUE)
         );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
+        panelTotalMemberPaidLayout.setVerticalGroup(
+            panelTotalMemberPaidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout selectMemberToPayLayout = new javax.swing.GroupLayout(selectMemberToPay);
+        selectMemberToPay.setLayout(selectMemberToPayLayout);
+        selectMemberToPayLayout.setHorizontalGroup(
+            selectMemberToPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(selectMemberToPayLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(selectMemberToPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(selectMemberToPayLayout.createSequentialGroup()
+                        .addGroup(selectMemberToPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(selectMemberToPayLayout.createSequentialGroup()
+                                .addGap(0, 55, Short.MAX_VALUE)
+                                .addComponent(jLabel4)
+                                .addGap(66, 66, 66))
+                            .addGroup(selectMemberToPayLayout.createSequentialGroup()
+                                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addComponent(panelTotalMemberPaid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, selectMemberToPayLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnOkPayMember)))
+                .addContainerGap())
+        );
+        selectMemberToPayLayout.setVerticalGroup(
+            selectMemberToPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(selectMemberToPayLayout.createSequentialGroup()
                 .addGap(8, 8, 8)
                 .addComponent(jLabel4)
                 .addGap(1, 1, 1)
-                .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                .addGroup(selectMemberToPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                    .addGroup(selectMemberToPayLayout.createSequentialGroup()
+                        .addComponent(panelTotalMemberPaid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
+                .addComponent(btnOkPayMember)
                 .addContainerGap())
         );
 
-        mainPanel.add(jPanel10, "card12");
+        mainPanel.add(selectMemberToPay, "selectMemberToPay");
 
         buttonGroup1.add(menuMember);
         menuMember.setSelected(true);
@@ -961,7 +993,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(menuMember)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1013,6 +1045,7 @@ public class Home extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddMember;
     private javax.swing.JButton btnAddMemberEdit;
+    private javax.swing.JButton btnAddMemberToPay;
     private javax.swing.JButton btnAddMenu;
     private javax.swing.JButton btnAddMenuEdit;
     private javax.swing.JButton btnAddPlace;
@@ -1021,12 +1054,15 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelMemberEdit;
     private javax.swing.JButton btnCancelMenuEdit;
     private javax.swing.JButton btnCancelPlaceEdit;
+    private javax.swing.JButton btnDelMemberToPay;
     private javax.swing.JButton btnDeleteMember;
     private javax.swing.JButton btnDeleteMenu;
     private javax.swing.JButton btnDeletePlace;
     private javax.swing.JButton btnEditMember;
     private javax.swing.JButton btnEditMenu;
     private javax.swing.JButton btnEditPlace;
+    private javax.swing.JButton btnOkPayMember;
+    private javax.swing.JButton btnPay;
     private javax.swing.JButton btnPayMember;
     private javax.swing.JButton btnSaveMemberEdit;
     private javax.swing.JButton btnSaveMenuEdit;
@@ -1035,10 +1071,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton btnSetBuyer;
     private javax.swing.JButton btnSetMenu;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1053,14 +1085,9 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
@@ -1088,14 +1115,20 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel menuSet;
     private javax.swing.JToggleButton menuSummary;
     private javax.swing.JPanel menuView;
+    private javax.swing.JPanel panelPaid;
+    private javax.swing.JPanel panelTotal;
+    private javax.swing.JPanel panelTotalMemberPaid;
+    private javax.swing.JPanel panelTotalMustPay;
+    private javax.swing.JPanel panelWhoPaid;
     private javax.swing.JPanel payMember;
     private javax.swing.JPanel payment;
     private javax.swing.JPanel placeEdit;
     private javax.swing.JPanel placeView;
+    private javax.swing.JPanel selectMemberToPay;
     private javax.swing.JSpinner spnQuantityMenuEdit;
     private javax.swing.JPanel summary;
+    private javax.swing.JTable tblMemberPaidBy;
     private javax.swing.JTable tblMemberPayment;
-    private javax.swing.JTable tblMemberPayment1;
     private javax.swing.JTable tblMemberPayment2;
     private javax.swing.JTable tblMemberSet;
     private javax.swing.JTable tblMemberSummary;
@@ -1129,21 +1162,80 @@ public class Home extends javax.swing.JFrame {
     }
 
     public void setListener(EventListener event) {
-        btnEditMember.addActionListener((ActionListener) event);
+        btnAddMember.addActionListener((ActionListener) event);
+        btnAddMemberEdit.addActionListener((ActionListener) event);
+        btnAddMemberToPay.addActionListener((ActionListener) event);
+        btnAddMenu.addActionListener((ActionListener) event);
+        btnAddMenuEdit.addActionListener((ActionListener) event);
+        btnAddPlace.addActionListener((ActionListener) event);
+        btnAddPlaceEdit.addActionListener((ActionListener) event);
+        btnBackMenuSet.addActionListener((ActionListener) event);
+        btnCancelMemberEdit.addActionListener((ActionListener) event);
+        btnCancelMenuEdit.addActionListener((ActionListener) event);
+        btnCancelPlaceEdit.addActionListener((ActionListener) event);
+        btnDelMemberToPay.addActionListener((ActionListener) event);
         btnDeleteMember.addActionListener((ActionListener) event);
+        btnDeleteMenu.addActionListener((ActionListener) event);
+        btnDeletePlace.addActionListener((ActionListener) event);
+        btnEditMember.addActionListener((ActionListener) event);
+        btnEditMenu.addActionListener((ActionListener) event);
+        btnEditPlace.addActionListener((ActionListener) event);
+        btnOkPayMember.addActionListener((ActionListener) event);
+        btnPay.addActionListener((ActionListener) event);
+        btnPayMember.addActionListener((ActionListener) event);
+        btnSaveMemberEdit.addActionListener((ActionListener) event);
+        btnSaveMenuEdit.addActionListener((ActionListener) event);
+        btnSaveMenuSet.addActionListener((ActionListener) event);
+        btnSavePlaceEdit.addActionListener((ActionListener) event);
+        btnSetBuyer.addActionListener((ActionListener) event);
+        btnSetMenu.addActionListener((ActionListener) event);
+        listMember.addMouseListener((MouseAdapter) event);
+
     }
 
     private class Controller extends MouseAdapter implements ActionListener {
 
+        CardLayout c = (CardLayout) mainPanel.getLayout();
+
         public Controller() {
             setListener(this);
+            c.show(mainPanel, "memberView");
+            btnEditMember.setVisible(false);
+            btnDeleteMember.setVisible(false);
         }
 
         @Override
         public void actionPerformed(ActionEvent ae) {
             Object e = ae.getSource();
-//        CardLayout c = (CardLayout) mainPanel.getLayout();
+            //Action Handler for Panel Member View
+            if (e.equals(btnAddMember)) {
+                c.show(mainPanel, "memberEdit");
+                btnAddMemberEdit.setVisible(true);
+                btnCancelMemberEdit.setVisible(false);
+                btnSaveMemberEdit.setVisible(false);
+            } else if (e.equals(btnEditMember)) {
+                c.show(mainPanel, "memberEdit");
+                btnAddMemberEdit.setVisible(false);
+                btnCancelMemberEdit.setVisible(true);
+                btnSaveMemberEdit.setVisible(true);
+            }
 //        c.show(mainPanel, "memberEdit");
+        }
+
+        public void mousePressed(MouseEvent me) {
+            Object e = me.getSource();
+            if (e.equals(listMember)) {
+                if (listMember.isSelectionEmpty()) {
+                    listMember.clearSelection();
+                    btnAddMemberEdit.setVisible(true);
+                    btnEditMember.setVisible(false);
+                    btnDeleteMember.setVisible(false);
+                } else {
+                    btnAddMemberEdit.setVisible(true);
+                    btnEditMember.setVisible(true);
+                    btnDeleteMember.setVisible(true);
+                }
+            }
         }
 
     }
