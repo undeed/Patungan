@@ -10,54 +10,61 @@ package model;
  */
 public class Menu {
 
-    private String nama;
-    private double harga;
-    private double pajak;
-    private boolean dibayar;
+    private String name;
+    private double price;
+    private double tax;
+    private boolean paid;
 
     public Menu() {
-        dibayar = false;
+        paid = false;
     }
 
-    public Menu(String nama, double harga) {
-        this.nama = nama;
-        this.harga = harga;
-        dibayar = false;
+    public Menu(String name, double price, double tax) {
+        this.name = name;
+        this.price = price;
+        paid = false;
+        this.tax = tax;
     }
 
-    public boolean isDibayar() {
-        return dibayar;
+    public double getPriceTax() {
+        return price + (price * tax / 100);
     }
 
-    public void setDibayar() {
-        dibayar = !dibayar;
+    public String getName() {
+        return name;
     }
 
-    public double getPajak() {
-        return pajak;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setPajak(double pajak) {
-        this.pajak = pajak;
+    public double getPrice() {
+        return price;
     }
 
-    public String getNama() {
-        return nama;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
-    public void setNama(String nama) {
-        this.nama = nama;
+    public double getTax() {
+        return tax;
     }
 
-    public double getHarga() {
-        return harga;
+    public void setTax(double tax) {
+        this.tax = tax;
     }
 
-    public double getHargaDibayar() {
-        return harga + (harga * pajak / 100);
+    public boolean isPaid() {
+        return paid;
     }
 
-    public void setHarga(double harga) {
-        this.harga = harga;
+    public void setPaid(boolean paid) {
+        this.paid = paid;
     }
+
+    @Override
+    public String toString() {
+        return "Menu{" + "name=" + name + ", price=" + price + ", tax=" + tax + ", paid=" + paid + '}';
+    }
+
 }

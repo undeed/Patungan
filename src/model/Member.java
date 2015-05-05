@@ -10,12 +10,12 @@ import java.util.ArrayList;
  *
  * @author undeed
  */
-public class Orang {
+public class Member {
 
     private String name;
     private ArrayList<Menu> listMenu;
 
-    public Orang(String name) {
+    public Member(String name) {
         this.name = name;
         listMenu = new ArrayList();
     }
@@ -26,10 +26,10 @@ public class Orang {
      *
      * @return total harus dibayar
      */
-    public double getTotalDibayar() {
+    public double getTotalMustPay() {
         double total = 0;
         for (Menu menu : listMenu) {
-            total += menu.getHargaDibayar();
+            total += menu.getPriceTax();
         }
         return total;
     }
@@ -40,11 +40,11 @@ public class Orang {
      * @param sudah true = sudah dibayar, false = belum dibayar
      * @return total
      */
-    public double getTotalDibayar(boolean sudah) {
+    public double getTotalPaid(boolean sudah) {
         double total = 0;
         for (Menu menu : listMenu) {
-            if (menu.isDibayar() == sudah) {
-                total += menu.getHargaDibayar();
+            if (menu.isPaid() == sudah) {
+                total += menu.getPriceTax();
             }
         }
         return total;
@@ -62,10 +62,10 @@ public class Orang {
         return listMenu;
     }
 
-    public ArrayList<Menu> getListMenu(boolean sudah) {
+    public ArrayList<Menu> getListMenu(boolean paid) {
         ArrayList<Menu> list = new ArrayList();
         for (Menu m : listMenu) {
-            if (m.isDibayar() == sudah) {
+            if (m.isPaid() == paid) {
                 list.add(m);
             }
         }
@@ -83,4 +83,10 @@ public class Orang {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "Member{" + "name=" + name + ", listMenu=" + listMenu + '}';
+    }
+
 }

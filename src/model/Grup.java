@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class Grup {
 
-    private ArrayList<Orang> listOrang;
+    private ArrayList<Member> listOrang;
     private ArrayList<Menu> listMenu;
     private Penalang penalang;
 
@@ -21,11 +21,11 @@ public class Grup {
         listOrang = new ArrayList();
     }
 
-    public Orang getPenalang() {
+    public Member getPenalang() {
         return penalang;
     }
 
-    public void setMenuOrang(Menu m, Orang o) {
+    public void setMenuOrang(Menu m, Member o) {
         o.addMenu(m);
     }
 
@@ -40,7 +40,7 @@ public class Grup {
         addMenuPenalang(m);
     }
 
-    public void addOrang(Orang o) {
+    public void addOrang(Member o) {
         listOrang.add(o);
     }
 
@@ -52,23 +52,23 @@ public class Grup {
         return listMenu;
     }
 
-    public ArrayList<Orang> getOrang() {
+    public ArrayList<Member> getOrang() {
         return listOrang;
     }
 
-    public Orang getOrang(int id) {
+    public Member getOrang(int id) {
         return listOrang.get(id);
     }
 
     public double getTotalMenu() {
         double total = 0;
         for (Menu menu : listMenu) {
-            total += menu.getHarga();
+            total += menu.getPriceTax();
         }
         return total;
     }
 
-    public void setPenalang(Orang penalang) {
+    public void setPenalang(Member penalang) {
         this.penalang = new Penalang(penalang.getName());
     }
     

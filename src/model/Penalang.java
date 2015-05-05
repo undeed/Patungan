@@ -8,7 +8,7 @@ package model;
  *
  * @author undeed
  */
-public class Penalang extends Orang{
+public class Penalang extends Member{
     public Penalang(String name){
         super(name);
     }

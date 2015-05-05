@@ -12,34 +12,68 @@ import java.util.ArrayList;
  */
 public class Patungan {
 
-    private ArrayList<Menu> listMenu;
-    private ArrayList<Orang> listOrang;
+    private ArrayList<Member> listMember;
     private ArrayList<Place> listPlace;
 
     public Patungan() {
-        listMenu = new ArrayList();
-        listOrang = new ArrayList();
+        listMember = new ArrayList();
         listPlace = new ArrayList();
     }
 
-    public void addOrang(Orang o) {
-        listOrang.add(o);
+    public void addMember(Member o) {
+        listMember.add(o);
     }
 
-    public Orang getOrang(int idx) {
-        return listOrang.get(idx);
+    public Member getMember(int idx) {
+        return listMember.get(idx);
     }
 
-    public void delOrang(int idx) {
-        listOrang.remove(idx);
+    public void delMember(int idx) {
+        listMember.remove(idx);
     }
 
-    public Object[] getListOrang() {
+    public Object[] getListMemberName() {
         ArrayList<String> s = new ArrayList();
-        for (Orang o : listOrang) {
+        for (Member o : listMember) {
             s.add(o.getName());
         }
         return s.toArray();
+    }
+
+    public void addPlace(Place p) {
+        listPlace.add(p);
+    }
+
+    public Place getPlace(int idx) {
+        return listPlace.get(idx);
+    }
+
+    public void delPlace(int idx) {
+        listPlace.remove(idx);
+    }
+
+    public Object[] getListPlaceName() {
+        ArrayList<String> s = new ArrayList();
+        for (Place p : listPlace) {
+            s.add(p.getName());
+        }
+        return s.toArray();
+    }
+
+    public ArrayList<Member> getListMember() {
+        return listMember;
+    }
+
+    public void setListMember(ArrayList<Member> listMember) {
+        this.listMember = listMember;
+    }
+
+    public ArrayList<Place> getListPlace() {
+        return listPlace;
+    }
+
+    public void setListPlace(ArrayList<Place> listPlace) {
+        this.listPlace = listPlace;
     }
 
 }
