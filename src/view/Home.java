@@ -38,11 +38,8 @@ public class Home extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        menuMember = new javax.swing.JToggleButton();
-        menuPlace = new javax.swing.JToggleButton();
-        menuPayment = new javax.swing.JToggleButton();
-        menuSummary = new javax.swing.JToggleButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        member = new javax.swing.JPanel();
         memberView = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -51,26 +48,22 @@ public class Home extends javax.swing.JFrame {
         btnEditMember = new javax.swing.JButton();
         btnDeleteMember = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        memberEdit = new javax.swing.JPanel();
+        tfMemberEdit = new javax.swing.JTextField();
+        labelMemberEdit = new javax.swing.JLabel();
+        btnAddMemberEdit = new javax.swing.JButton();
+        btnSaveMemberEdit = new javax.swing.JButton();
+        btnCancelMemberEdit = new javax.swing.JButton();
+        jLabel14 = new javax.swing.JLabel();
+        place = new javax.swing.JPanel();
         placeView = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         listPlace = new javax.swing.JList();
         btnAddPlace = new javax.swing.JButton();
-        btnSetMenu = new javax.swing.JButton();
         btnEditPlace = new javax.swing.JButton();
         btnDeletePlace = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        mainPanel = new javax.swing.JPanel();
-        menuView = new javax.swing.JPanel();
-        btnSetBuyer = new javax.swing.JButton();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        tblMenu = new javax.swing.JTable();
-        jPanel4 = new javax.swing.JPanel();
-        lblPlaceName = new javax.swing.JLabel();
-        btnAddMenu = new javax.swing.JButton();
-        btnEditMenu = new javax.swing.JButton();
-        btnDeleteMenu = new javax.swing.JButton();
-        jLabel15 = new javax.swing.JLabel();
         placeEdit = new javax.swing.JPanel();
         labelPlaceEdit = new javax.swing.JLabel();
         tfPlaceEdit = new javax.swing.JTextField();
@@ -80,13 +73,16 @@ public class Home extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         tfTaxPlaceEdit = new javax.swing.JFormattedTextField();
-        memberEdit = new javax.swing.JPanel();
-        tfMemberEdit = new javax.swing.JTextField();
-        labelMemberEdit = new javax.swing.JLabel();
-        btnAddMemberEdit = new javax.swing.JButton();
-        btnSaveMemberEdit = new javax.swing.JButton();
-        btnCancelMemberEdit = new javax.swing.JButton();
-        jLabel14 = new javax.swing.JLabel();
+        menu = new javax.swing.JPanel();
+        menuView = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tblMenu = new javax.swing.JTable();
+        jPanel4 = new javax.swing.JPanel();
+        btnAddMenu = new javax.swing.JButton();
+        btnEditMenu = new javax.swing.JButton();
+        btnDeleteMenu = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
+        cbPlaceMenu = new javax.swing.JComboBox();
         menuEdit = new javax.swing.JPanel();
         labelMenuEdit = new javax.swing.JLabel();
         tfMenuEdit = new javax.swing.JTextField();
@@ -98,6 +94,8 @@ public class Home extends javax.swing.JFrame {
         spnQuantityMenuEdit = new javax.swing.JSpinner();
         jLabel16 = new javax.swing.JLabel();
         tfPriceMenuEdit = new javax.swing.JFormattedTextField();
+        setMenu = new javax.swing.JPanel();
+        mainPanel = new javax.swing.JPanel();
         menuSet = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblMemberSet = new javax.swing.JTable();
@@ -140,33 +138,7 @@ public class Home extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        buttonGroup1.add(menuMember);
-        menuMember.setSelected(true);
-        menuMember.setText("Member");
-        menuMember.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuMemberActionPerformed(evt);
-            }
-        });
-
-        buttonGroup1.add(menuPlace);
-        menuPlace.setText("Place");
-        menuPlace.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuPlaceActionPerformed(evt);
-            }
-        });
-
-        buttonGroup1.add(menuPayment);
-        menuPayment.setText("Payment");
-        menuPayment.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuPaymentActionPerformed(evt);
-            }
-        });
-
-        buttonGroup1.add(menuSummary);
-        menuSummary.setText("Summary");
+        member.setLayout(new java.awt.CardLayout());
 
         jLabel1.setText("Member List");
 
@@ -234,7 +206,65 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("tab1", memberView);
+        member.add(memberView, "memberView");
+
+        labelMemberEdit.setText("Add New Member");
+
+        btnAddMemberEdit.setText("Add");
+
+        btnSaveMemberEdit.setText("Save");
+
+        btnCancelMemberEdit.setText("Cancel");
+
+        jLabel14.setText("Member Name");
+
+        javax.swing.GroupLayout memberEditLayout = new javax.swing.GroupLayout(memberEdit);
+        memberEdit.setLayout(memberEditLayout);
+        memberEditLayout.setHorizontalGroup(
+            memberEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(memberEditLayout.createSequentialGroup()
+                .addGroup(memberEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, memberEditLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel14)
+                        .addGap(18, 18, 18)
+                        .addComponent(tfMemberEdit))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, memberEditLayout.createSequentialGroup()
+                        .addContainerGap(151, Short.MAX_VALUE)
+                        .addComponent(btnCancelMemberEdit)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSaveMemberEdit)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAddMemberEdit)
+                        .addGap(4, 4, 4)))
+                .addContainerGap())
+            .addGroup(memberEditLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelMemberEdit)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        memberEditLayout.setVerticalGroup(
+            memberEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(memberEditLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelMemberEdit)
+                .addGap(8, 8, 8)
+                .addGroup(memberEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfMemberEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(memberEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAddMemberEdit)
+                    .addComponent(btnSaveMemberEdit)
+                    .addComponent(btnCancelMemberEdit))
+                .addContainerGap(189, Short.MAX_VALUE))
+        );
+
+        member.add(memberEdit, "memberEdit");
+
+        jTabbedPane1.addTab("Member", member);
+
+        place.setLayout(new java.awt.CardLayout());
 
         jLabel3.setText("Place List");
 
@@ -247,8 +277,6 @@ public class Home extends javax.swing.JFrame {
         jScrollPane2.setViewportView(listPlace);
 
         btnAddPlace.setText("Add");
-
-        btnSetMenu.setText("Set Menu");
 
         btnEditPlace.setText("Edit");
 
@@ -285,11 +313,7 @@ public class Home extends javax.swing.JFrame {
                                 .addComponent(btnAddPlace))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(placeViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(placeViewLayout.createSequentialGroup()
-                                .addComponent(btnSetMenu)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         placeViewLayout.setVerticalGroup(
@@ -304,106 +328,12 @@ public class Home extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(placeViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddPlace)
-                    .addComponent(btnSetMenu)
                     .addComponent(btnEditPlace)
                     .addComponent(btnDeletePlace))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("tab2", placeView);
-
-        mainPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        mainPanel.setLayout(new java.awt.CardLayout());
-
-        btnSetBuyer.setText("Set Buyer");
-
-        tblMenu.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane6.setViewportView(tblMenu);
-
-        jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 153, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 194, Short.MAX_VALUE)
-        );
-
-        lblPlaceName.setText("Place Name");
-        lblPlaceName.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        btnAddMenu.setText("Add");
-
-        btnEditMenu.setText("Edit");
-
-        btnDeleteMenu.setText("Del");
-
-        jLabel15.setText("Place Name : ");
-
-        javax.swing.GroupLayout menuViewLayout = new javax.swing.GroupLayout(menuView);
-        menuView.setLayout(menuViewLayout);
-        menuViewLayout.setHorizontalGroup(
-            menuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menuViewLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(menuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(menuViewLayout.createSequentialGroup()
-                        .addGroup(menuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(menuViewLayout.createSequentialGroup()
-                                .addComponent(btnDeleteMenu)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnEditMenu)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnAddMenu)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(menuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(menuViewLayout.createSequentialGroup()
-                                .addComponent(btnSetBuyer)
-                                .addGap(0, 58, Short.MAX_VALUE))
-                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(menuViewLayout.createSequentialGroup()
-                        .addComponent(jLabel15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblPlaceName)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        menuViewLayout.setVerticalGroup(
-            menuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menuViewLayout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addGroup(menuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPlaceName)
-                    .addComponent(jLabel15))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(menuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(menuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSetBuyer)
-                    .addComponent(btnAddMenu)
-                    .addComponent(btnEditMenu)
-                    .addComponent(btnDeleteMenu))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        mainPanel.add(menuView, "menuView");
+        place.add(placeView, "placeView");
 
         labelPlaceEdit.setText("Add New Place");
 
@@ -442,7 +372,7 @@ public class Home extends javax.swing.JFrame {
                                 .addComponent(btnSavePlaceEdit)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnAddPlaceEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 40, Short.MAX_VALUE)))
+                                .addGap(0, 44, Short.MAX_VALUE)))
                         .addGap(23, 23, 23))
                     .addGroup(placeEditLayout.createSequentialGroup()
                         .addComponent(labelPlaceEdit)
@@ -466,64 +396,96 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(btnCancelPlaceEdit)
                     .addComponent(btnSavePlaceEdit)
                     .addComponent(btnAddPlaceEdit))
-                .addContainerGap(145, Short.MAX_VALUE))
+                .addContainerGap(149, Short.MAX_VALUE))
         );
 
-        mainPanel.add(placeEdit, "placeEdit");
+        place.add(placeEdit, "placeEdit");
 
-        labelMemberEdit.setText("Add New Member");
+        jTabbedPane1.addTab("Place", place);
 
-        btnAddMemberEdit.setText("Add");
+        menu.setLayout(new java.awt.CardLayout());
 
-        btnSaveMemberEdit.setText("Save");
+        tblMenu.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane6.setViewportView(tblMenu);
 
-        btnCancelMemberEdit.setText("Cancel");
+        jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel14.setText("Member Name");
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 157, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 194, Short.MAX_VALUE)
+        );
 
-        javax.swing.GroupLayout memberEditLayout = new javax.swing.GroupLayout(memberEdit);
-        memberEdit.setLayout(memberEditLayout);
-        memberEditLayout.setHorizontalGroup(
-            memberEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(memberEditLayout.createSequentialGroup()
-                .addGroup(memberEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, memberEditLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel14)
-                        .addGap(18, 18, 18)
-                        .addComponent(tfMemberEdit))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, memberEditLayout.createSequentialGroup()
-                        .addContainerGap(147, Short.MAX_VALUE)
-                        .addComponent(btnCancelMemberEdit)
+        btnAddMenu.setText("Add");
+
+        btnEditMenu.setText("Edit");
+
+        btnDeleteMenu.setText("Del");
+
+        jLabel15.setText("Place : ");
+
+        cbPlaceMenu.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout menuViewLayout = new javax.swing.GroupLayout(menuView);
+        menuView.setLayout(menuViewLayout);
+        menuViewLayout.setHorizontalGroup(
+            menuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(menuViewLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(menuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(menuViewLayout.createSequentialGroup()
+                        .addGroup(menuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(menuViewLayout.createSequentialGroup()
+                                .addComponent(btnDeleteMenu)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnEditMenu)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnAddMenu)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSaveMemberEdit)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(menuViewLayout.createSequentialGroup()
+                        .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAddMemberEdit)
-                        .addGap(4, 4, 4)))
+                        .addComponent(cbPlaceMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(memberEditLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelMemberEdit)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        memberEditLayout.setVerticalGroup(
-            memberEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(memberEditLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelMemberEdit)
-                .addGap(8, 8, 8)
-                .addGroup(memberEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfMemberEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14))
+        menuViewLayout.setVerticalGroup(
+            menuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(menuViewLayout.createSequentialGroup()
+                .addGap(7, 7, 7)
+                .addGroup(menuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(cbPlaceMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(memberEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAddMemberEdit)
-                    .addComponent(btnSaveMemberEdit)
-                    .addComponent(btnCancelMemberEdit))
-                .addContainerGap(185, Short.MAX_VALUE))
+                .addGroup(menuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(menuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAddMenu)
+                    .addComponent(btnEditMenu)
+                    .addComponent(btnDeleteMenu))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        mainPanel.add(memberEdit, "memberEdit");
+        menu.add(menuView, "menuView");
 
         labelMenuEdit.setText("Add New Menu");
 
@@ -569,7 +531,7 @@ public class Home extends javax.swing.JFrame {
                                         .addComponent(btnSaveMenuEdit)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(btnAddMenuEdit)))
-                                .addGap(0, 22, Short.MAX_VALUE))
+                                .addGap(0, 26, Short.MAX_VALUE))
                             .addComponent(tfPriceMenuEdit)))
                     .addComponent(labelMenuEdit))
                 .addContainerGap())
@@ -596,10 +558,18 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(btnCancelMenuEdit)
                     .addComponent(btnSaveMenuEdit)
                     .addComponent(btnAddMenuEdit))
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
 
-        mainPanel.add(menuEdit, "menuEdit");
+        menu.add(menuEdit, "menuEdit");
+
+        jTabbedPane1.addTab("Menu", menu);
+
+        setMenu.setLayout(new java.awt.CardLayout());
+        jTabbedPane1.addTab("tab5", setMenu);
+
+        mainPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        mainPanel.setLayout(new java.awt.CardLayout());
 
         tblMemberSet.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1012,50 +982,20 @@ public class Home extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(menuMember, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(menuPlace)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(menuSummary)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(menuPayment)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(344, 344, 344))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(menuMember)
-                            .addComponent(menuPlace)
-                            .addComponent(menuPayment)
-                            .addComponent(menuSummary))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jTabbedPane1))
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void menuPlaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPlaceActionPerformed
-        // TODO add your handling code here:
-        c.gotoPlaceView();
-    }//GEN-LAST:event_menuPlaceActionPerformed
-
-    private void menuMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuMemberActionPerformed
-        // TODO add your handling code here:
-        c.gotoMemberView();
-    }//GEN-LAST:event_menuMemberActionPerformed
-
-    private void menuPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPaymentActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuPaymentActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1087,10 +1027,9 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton btnSaveMenuEdit;
     private javax.swing.JButton btnSaveMenuSet;
     private javax.swing.JButton btnSavePlaceEdit;
-    private javax.swing.JButton btnSetBuyer;
-    private javax.swing.JButton btnSetMenu;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox cbPlace;
+    private javax.swing.JComboBox cbPlaceMenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
@@ -1124,18 +1063,15 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel labelMemberEdit;
     private javax.swing.JLabel labelMenuEdit;
     private javax.swing.JLabel labelPlaceEdit;
-    private javax.swing.JLabel lblPlaceName;
     private javax.swing.JList listMember;
     private javax.swing.JList listPlace;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JPanel member;
     private javax.swing.JPanel memberEdit;
     private javax.swing.JPanel memberView;
+    private javax.swing.JPanel menu;
     private javax.swing.JPanel menuEdit;
-    private javax.swing.JToggleButton menuMember;
-    private javax.swing.JToggleButton menuPayment;
-    private javax.swing.JToggleButton menuPlace;
     private javax.swing.JPanel menuSet;
-    private javax.swing.JToggleButton menuSummary;
     private javax.swing.JPanel menuView;
     private javax.swing.JPanel panelPaid;
     private javax.swing.JPanel panelTotal;
@@ -1144,9 +1080,11 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel panelWhoPaid;
     private javax.swing.JPanel payMember;
     private javax.swing.JPanel payment;
+    private javax.swing.JPanel place;
     private javax.swing.JPanel placeEdit;
     private javax.swing.JPanel placeView;
     private javax.swing.JPanel selectMemberToPay;
+    private javax.swing.JPanel setMenu;
     private javax.swing.JSpinner spnQuantityMenuEdit;
     private javax.swing.JPanel summary;
     private javax.swing.JTable tblMemberPaidBy;
