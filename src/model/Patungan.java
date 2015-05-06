@@ -32,12 +32,12 @@ public class Patungan {
         listMember.remove(idx);
     }
 
-    public Object[] getListMemberName() {
+    public String[] getListMemberName() {
         ArrayList<String> s = new ArrayList();
         for (Member o : listMember) {
             s.add(o.getName());
         }
-        return s.toArray();
+        return s.toArray(new String[s.size()]);
     }
 
     public void addPlace(Place p) {
@@ -52,12 +52,12 @@ public class Patungan {
         listPlace.remove(idx);
     }
 
-    public Object[] getListPlaceName() {
+    public String[] getListPlaceName() {
         ArrayList<String> s = new ArrayList();
         for (Place p : listPlace) {
             s.add(p.getName());
         }
-        return s.toArray();
+        return s.toArray(new String[s.size()]);
     }
 
     public ArrayList<Member> getListMember() {
